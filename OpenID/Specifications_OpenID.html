@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://openid.net/developers/specs/ -->
+<html lang="en-US" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+				    
+				    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+            				    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+				    <link rel="profile" href="http://gmpg.org/xfn/11">
+				    <link rel="pingback" href="http://openid.net/wordpress/xmlrpc.php">
+
+				   <!-- Icons font support for IE6-7  -->
+				    <!--[if lt IE 8]>
+				      <script src="http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/lte-ie7.js"></script>
+				    <![endif]-->
+				    <title>Specifications | OpenID</title>
+
+<!-- All in One SEO Pack 2.3.11.4 by Michael Torbert of Semper Fi Web Designob_start_detected [-1,-1] -->
+<meta name="description" content="OpenID specifications are developed by OpenID working groups and go through three phases: Drafts, Implementer&#39;s Drafts, and Final Specifications. Implementer&#39;s">
+
+<link rel="canonical" href="http://openid.net/developers/specs/">
+<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="OpenID » Feed" href="http://openid.net/feed/">
+<link rel="alternate" type="application/rss+xml" title="OpenID » Comments Feed" href="http://openid.net/comments/feed/">
+		<script type="text/javascript" async="" src="./Specifications _ OpenID_files/ga.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/openid.net\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Specifications _ OpenID_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="openid-css" href="./Specifications _ OpenID_files/openid.css" type="text/css" media="all">
+<link rel="stylesheet" id="digg-digg-css" href="./Specifications _ OpenID_files/diggdigg-style.css" type="text/css" media="screen">
+<link rel="stylesheet" id="customizr-common-css" href="./Specifications _ OpenID_files/tc_common.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="customizr-skin-css" href="./Specifications _ OpenID_files/orange.min.css" type="text/css" media="all">
+<style id="customizr-skin-inline-css" type="text/css">
+        @font-face {
+          font-family: 'genericons';
+          src:url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/genericons-regular-webfont.eot');
+          src:url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+              url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/genericons-regular-webfont.woff') format('woff'),
+              url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/genericons-regular-webfont.ttf') format('truetype'),
+              url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/genericons-regular-webfont.svg#genericonsregular') format('svg');
+        }
+        @font-face {
+          font-family: 'entypo';
+          src:url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/entypo.eot');
+          src:url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/entypo.eot?#iefix') format('embedded-opentype'),
+          url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/entypo.woff') format('woff'),
+          url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/entypo.ttf') format('truetype'),
+          url('http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/fonts/entypo.svg#genericonsregular') format('svg');
+        }
+        
+
+.sticky-enabled .tc-shrink-on .site-logo img {
+    					height:30px!important;width:auto!important
+    				}
+
+    				.sticky-enabled .tc-shrink-on .brand .site-title {
+    					font-size:0.6em;opacity:0.8;line-height:1.2em
+    				}
+
+.navbar .nav > li > a:first-letter {
+          font-size: 17px;
+        }
+
+          .comments-link .tc-comment-bubble {
+            color: #F00;
+            border: 2px solid #F00;
+          }
+          .comments-link .tc-comment-bubble:before {
+            border-color: #F00;
+          }
+        
+ul.logos {background: #fff; list-style: none; margin: 0 0 3em; padding: 10px;}
+ul.logos li {max-width: 172px; width: 20%; height: 90px; margin: 0 0 15px; padding: 0 15px 0 0; float: left; text-align: center; line-height: 90px; -ms-box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+ul.logos li img,
+ul.logos li a {vertical-align: middle; display: inline-block; max-width: 100%; max-height: 100%;}
+ul.sustaining li {max-width: 285px; width: 33%; height: 100px; line-height: 100px;}
+ul.logos li.first {padding-left: 0;}
+
+
+
+.first {margin-left:5;padding-left:0;}
+.bios li:first-child {padding-top: 0; border: none;}
+.bios {margin: 0 0 1em; list-style: none;}
+.bios h4 {margin: 0 0 .8em; padding: 0; border: none; color: #222; font-size: 13px;}
+.bios p {font-size: 12px;}
+.bios li {padding: 15px 0 6px; clear: both; border-top: 1px solid #EEE;}
+.bios li:first-child {padding-top: 0; border: none;}
+.bios img {margin: 0 0 15px 10px !important; display: block; float: right !important;}
+
+#nav {
+padding-top: 7px;
+background-color: #f8fbfd;
+}
+#nav ul.navigation {
+margin-bottom: 7px;
+}
+#nav ul.navigation li {
+margin-right: 0;
+}
+#nav ul.navigation li a {
+color: #515151;
+text-decoration: none;
+padding: 8px 24px 8px 24px;
+margin-left: -4px;
+}
+
+#nav ul.navigation li a.selected {
+background-color: #515151;
+color: #fff;
+}
+#nav ul.navigation a:hover {
+background: #e5f1ff;
+}
+ul.navigation, ul.navigation li {
+list-style: none;
+}
+ul.navigation li {
+display: inline;
+margin-right: 1.3em;
+}
+
+@media only screen and (max-width: 568px) {
+  ul.sustaining li {width: 46%;}
+}
+
+.last, div.last {margin-right:0;}
+div.sidebar {background: #f4f4f4; padding: 10px; }
+
+
+div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span-7, div.span-8, div.span-9, div.span-10, div.span-11, div.span-12, div.span-13, div.span-14, div.span-15, div.span-16, div.span-17, div.span-18, div.span-19, div.span-20, div.span-21, div.span-22, div.span-23, div.span-24
+{float:left; margin-right:10px}
+
+.span-1 {width:30px;}
+.span-2 {width:70px;}
+.span-3 {width:110px;}
+.span-4 {width:150px;}
+.span-5 {width:190px;}
+.span-6 {width:230px;}
+.span-7 {width:270px;}
+.span-8 {width:310px;}
+.span-9 {width:350px;}
+.span-10 {width:390px;}
+.span-11 {width:430px;}
+.span-12 {width:470px;}
+.span-13 {width:510px;}
+.span-14 {width:550px;}
+.span-15 {width:590px;}
+.span-16 {width:630px;}
+.span-17 {width:670px;}
+.span-18 {width:710px;}
+.span-19 {width:750px;}
+.span-20 {width:790px;}
+.span-21 {width:830px;}
+.span-22 {width:870px;}
+.span-23 {width:910px;}
+.span-24, div.span-24 {width:950px;margin:0;}
+
+</style>
+<link rel="stylesheet" id="customizr-style-css" href="./Specifications _ OpenID_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancyboxcss-css" href="./Specifications _ OpenID_files/jquery.fancybox-1.3.4.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Specifications _ OpenID_files/jquery.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var TCParams = {"FancyBoxState":"1","FancyBoxAutoscale":"1","SliderName":"","SliderDelay":"","SliderHover":"1","centerSliderImg":"1","SmoothScroll":"easeOutExpo","SmoothScrollExclude":["[class*=edd]",".tc-carousel-control",".carousel-control","[data-toggle=\"modal\"]","[data-toggle=\"dropdown\"]","[data-toggle=\"tooltip\"]","[data-toggle=\"popover\"]","[data-toggle=\"collapse\"]","[data-toggle=\"tab\"]","[class*=upme]"],"ReorderBlocks":"1","centerAllImg":"1","HasComments":"","LeftSidebarClass":".span3.left.tc-sidebar","RightSidebarClass":".span3.right.tc-sidebar","LoadModernizr":"1","stickyCustomOffset":"0","stickyHeader":"1","dropdowntoViewport":"","timerOnScrollAllBrowsers":"1","extLinksStyle":"","extLinksTargetExt":"","extLinksSkipSelectors":{"classes":["btn"],"ids":[]},"dropcapEnabled":"","dropcapWhere":{"post":"","page":""},"dropcapMinWords":"50","dropcapSkipSelectors":{"tags":["IMG","IFRAME","H1","H2","H3","H4","H5","H6","BLOCKQUOTE","UL","OL"],"classes":["btn"],"id":[]},"imgSmartLoadEnabled":"","imgSmartLoadOpts":[],"goldenRatio":"1.618","gridGoldenRatioLimit":"350"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/tc-scripts.min.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/external-tracking.min.js"></script>
+<link rel="https://api.w.org/" href="http://openid.net/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://openid.net/wordpress/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://openid.net/wordpress/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.7.2">
+<link rel="shortlink" href="http://openid.net/?p=14">
+<link rel="alternate" type="application/json+oembed" href="http://openid.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fopenid.net%2Fdevelopers%2Fspecs%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://openid.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fopenid.net%2Fdevelopers%2Fspecs%2F&amp;format=xml">
+
+<!-- Start Of Script Generated By cforms v11.3 [Oliver Seidel | www.deliciousdays.com] -->
+<script type="text/javascript" src="./Specifications _ OpenID_files/cforms.js"></script>
+<!-- End Of Script Generated By cforms -->
+
+		<style type="text/css">
+						ol.footnotes li {list-style-type:decimal;}
+						ol.footnotes{font-size:0.8em; color:#666666;}		</style>
+		<meta http-equiv="X-XRDS-Location" content="http://openid.net/?xrds">
+<meta http-equiv="X-Yadis-Location" content="http://openid.net/?xrds">
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-72622-16']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+				    <!--Icons size hack for IE8 and less -->
+				    <!--[if lt IE 9]>
+				      <link href="http://openid.net/wordpress-content/themes/customizr/inc/assets/css/fonts/ie8-hacks.css" rel="stylesheet" type="text/css"/>
+				    <![endif]-->
+				</head>
+				
+	<body class="page-template-default page page-id-14 page-child parent-pageid-10 tc-fade-hover-links tc-r-sidebar tc-sticky-header tc-transparent-on-scroll skin-orange chrome sticky-disabled" itemscope="" itemtype="http://schema.org/WebPage">
+
+		
+	   	<header class="tc-header clearfix row-fluid tc-tagline-off tc-title-logo-on  tc-shrink-on tc-menu-on logo-left" role="banner" style="height: auto; top: 0px;">
+			
+        <div class="brand span3 pull-left">
+        <a class="site-logo" href="http://openid.net/" title="OpenID | The Internet Identity Layer"><img src="./Specifications _ OpenID_files/openid-r-logo-900x360.png" alt="Back Home" style="max-width:250px;max-height:100px" class=" "></a>        </div> <!-- brand span3 -->
+
+        <div class="container outside"><h2 class="site-description">The Internet Identity Layer</h2></div>      	<div class="navbar-wrapper clearfix span9 tc-submenu-fade tc-submenu-move tc-open-on-hover left">
+        	<div class="navbar resp">
+          		<div class="navbar-inner" role="navigation">
+            		<div class="row-fluid">
+              		<div class="social-block span5"><a class="social-icon icon-feed" href="http://openid.net/feed/rss/" title="Subscribe to my rss feed"></a><a class="social-icon icon-twitter" href="https://twitter.com/openid/" title="Follow me on Twitter" target="_blank"></a><a class="social-icon icon-facebook" href="https://www.facebook.com/openid.net" title="Follow me on Facebook" target="_blank"></a><a class="social-icon icon-google" href="https://google.com/+openid" title="Follow me on Google+" target="_blank"></a><a class="social-icon icon-youtube" href="http://www.youtube.com/user/TheOpenIDFoundation" title="Follow me on Youtube" target="_blank"></a></div><h2 class="span7 inside site-description">The Internet Identity Layer</h2><button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="nav-collapse collapse tc-hover-menu-wrapper"><div class="menu-main-menu-container"><ul id="menu-main-menu-2" class="nav tc-hover-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown menu-item-15506"><a href="http://openid.net/foundation/">OpenID Foundation <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18602"><a href="http://openid.net/foundation/">About Us</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15746"><a href="http://openid.net/foundation/sponsoring-members/">Sponsoring Members</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15740"><a href="http://openid.net/foundation/benefits-members/">Membership Benefits</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15716"><a href="http://openid.net/foundation/leadership/">Leadership</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15722"><a href="http://openid.net/foundation/chapters/">Chapters</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15728"><a href="http://openid.net/foundation/contact/">Contact</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15734"><a href="http://openid.net/foundation/community/">Community</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown-submenu menu-item-17060"><a href="http://openid.net/intellectual-property/">Intellectual Property</a>
+<ul class="dropdown-menu">
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24596"><a href="http://openid.net/intellectual-property/">OpenID IPR Policy, Contribution Agreement and Process Document</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24201"><a href="http://openid.net/intellectual-property/contribution-license-agreement/">Software Grant and Contribution License Agreement</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17048"><a href="http://openid.net/intellectual-property/copyright-license/">OpenID® Copyright License</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17054"><a href="http://openid.net/intellectual-property/trademark-license/">OpenID® TRADEMARK AND SERVICE MARK LICENSE</a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24601"><a href="http://openid.net/ipr/openid-logo-guidelines.pdf">OpenID® Logo Guidelines</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15698"><a href="http://openid.net/foundation/calendar-of-events/">Calendar of OpenID Foundation Meetings</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18464"><a href="https://openid.net/foundation/members">Member Sign-in</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown menu-item-15476"><a href="http://openid.net/wg/">Current Working Groups <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15626"><a href="http://openid.net/wg/about/">About OpenID Foundation Working Groups</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15632"><a href="http://openid.net/wg/connect/">AB/Connect Working Group</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15662"><a href="http://openid.net/wg/ac/">Account Chooser &amp; Open YOLO (You Only Login Once) Working Group</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23761"><a href="http://openid.net/wg/cx/">Contract Exchange WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24311"><a href="http://openid.net/wg/eap/">Enhanced Authentication Profile (EAP) Working Group</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25036"><a href="http://openid.net/wg/fastfed/">Fast Federation (FastFed) WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24541"><a href="http://openid.net/wg/fapi/">Financial API (FAPI) WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18821"><a href="http://openid.net/wg/heart/">HEART WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22806"><a href="http://openid.net/wg/igov/">International Government Assurance Profile (iGov) WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17186"><a href="http://openid.net/wg/mobile/">MODRNA (Mobile Operator Discovery, Registration &amp; autheNticAtion) WG</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21166"><a href="http://openid.net/wg/risc/">RISC (Risk and Incident Sharing and Coordination) WG</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-14 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children dropdown menu-item-15890"><a href="http://openid.net/developers/specs/">Specs &amp; Dev Info <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-14 current_page_item menu-item-21376"><a href="http://openid.net/developers/specs/">Specifications</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17456"><a href="http://openid.net/developers/libraries/">Libraries, Products, and Tools</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17012"><a href="http://openid.net/developers/libraries/obsolete/">Libraries for Obsolete Specifications</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown menu-item-21351"><a href="http://openid.net/certification/">OpenID® Certification <b class="caret"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21356"><a href="http://openid.net/certification/mark/">OpenID Certified Mark</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21361"><a href="http://openid.net/certification/submission/">Submission of Results for OPs</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21366"><a href="http://openid.net/certification/testing/">Conformance Testing for OPs</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21371"><a href="http://openid.net/certification/faq/">OpenID Certification Frequently Asked Questions (FAQ)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16226"><a href="http://openid.net/connect/faq/">OpenID Connect FAQ and Q&amp;As</a></li>
+</ul></div></div>          			</div>
+          		</div><!-- /.navbar-inner -->
+        	</div><!-- /.navbar resp -->
+      	</div><!-- /.navbar-wrapper -->
+    			</header>
+		<div id="tc-reset-margin-top" class="container-fluid" style="display: block; margin-top: 130px;"></div><div id="main-wrapper" class="container">
+
+    <div class="tc-hot-crumble container" role="navigation"><div class="row"><div class="span12"><div class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><span class="trail-begin"><a href="http://openid.net/" title="OpenID" rel="home" class="trail-begin">Home</a></span> <span class="sep">»</span> <a href="http://openid.net/developers/" title="Developers">Developers</a> <span class="sep">»</span> <span class="trail-end">Specifications</span></div></div></div></div>
+    <div class="container" role="main">
+        <div class="row column-content-wrapper">
+
+            
+                <div id="content" class="span9 article-container">
+
+                    
+                        
+                                                                                    
+                                                                    <article id="page-14" class="row-fluid post-14 page type-page status-publish hentry">
+                                                <header class="entry-header">
+          <h1 class="entry-title format-icon">Specifications</h1><hr class="featurette-divider __before_content">        </header>
+        
+                <div class="entry-content">
+                    <p>OpenID specifications are developed by OpenID working groups and go through three phases: Drafts, Implementer’s Drafts, and Final Specifications. Implementer’s Drafts and Final Specifications provide intellectual property protections to implementers. Final Specifications are OpenID Foundation standards.</p>
+<h2>Final Specifications</h2>
+<p><a href="http://openid.net/connect/">OpenID Connect</a> specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a> – Defines the core OpenID Connect functionality: authentication built on top of OAuth 2.0 and the use of claims to communicate information about the End-User</li>
+<li><a href="http://openid.net/specs/openid-connect-discovery-1_0.html">OpenID Connect Discovery</a> – Defines how clients dynamically discover information about OpenID Providers</li>
+<li><a href="http://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Dynamic Registration</a> – Defines how clients dynamically register with OpenID Providers</li>
+<li><a href="http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html">OAuth 2.0 Multiple Response Types</a> – Defines several specific new OAuth 2.0 response types</li>
+<li><a href="http://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html">OAuth 2.0 Form Post Response Mode</a> – Defines how to return OAuth 2.0 Authorization Response parameters (including OpenID Connect Authentication Response parameters) using HTML form values that are auto-submitted by the User Agent using HTTP POST</li>
+<li><a href="http://openid.net/specs/openid-connect-migration-1_0.html">OpenID 2.0 to OpenID Connect Migration 1.0</a> – Defines how to migrate from OpenID 2.0 to OpenID Connect</li>
+</ul>
+<h2>Implementer’s Drafts</h2>
+<p><a href="http://openid.net/wg/connect/">OpenID Connect</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-session-1_0.html">Session Management</a> – Defines how to manage OpenID Connect sessions, including postMessage-based logout functionality</li>
+<li><a href="http://openid.net/specs/openid-connect-frontchannel-1_0.html">Front-Channel Logout</a> – Defines a front-channel logout mechanism that does not use an OP iframe on RP pages</li>
+<li><a href="http://openid.net/specs/openid-connect-backchannel-1_0.html">Back-Channel Logout</a> – Defines a logout mechanism that uses direct back-channel communication between the OP and RPs being logged out</li>
+</ul>
+<p><a href="http://openid.net/wg/heart/">HEART</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-heart-oauth2-1_0.html">Health Relationship Trust Profile for OAuth 2.0</a> – HEART OAuth 2.0 Profile</li>
+<li><a href="http://openid.net/specs/openid-heart-openid-connect-1_0.html">Health Relationship Trust Profile for OpenID Connect 1.0</a> – HEART OpenID Connect Profile</li>
+<li><a href="http://openid.net/specs/openid-heart-uma-1_0.html">Health Relationship Trust Profile for User Managed Access 1.0</a> – HEART UMA Profile</li>
+</ul>
+<h2>Active Drafts</h2>
+<p><a href="http://openid.net/wg/connect/">OpenID Connect</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-scim-profile-1_0.html">OpenID Connect Profile for SCIM Services</a> – Defines how to use SCIM with OpenID Connect</li>
+<li><a href="http://openid.net/specs/openid-connect-federation-1_0.html">OpenID Connect Federation</a> – Defines how sets of OPs and RPs can establish trust by utilizing a Federation Operator</li>
+</ul>
+<p><a href="http://openid.net/wg/ac/">Account Chooser &amp; Open YOLO</a> working group specifications:</p>
+<ul>
+<li><a href="http://hg.openid.net/ac/src/8473c1e2f849400b7ad8502bb7a015397393a21c/account-chooser-api.xml?at=default">Account Chooser 1.0</a></li>
+</ul>
+<p><a href="http://openid.net/wg/mobile/">MODRNA</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-modrna-authentication-1_0.html">OpenID Connect MODRNA Authentication Profile 1.0</a></li>
+<li><a href="http://openid.net/specs/openid-connect-account-porting-1_0.html">OpenID Connect Account Porting</a></li>
+<li><a href="http://openid.net/specs/openid-connect-user-questioning-api-1_0.html">OpenID Connect User Questioning API 1.0</a></li>
+<li><a href="http://openid.net/specs/openid-connect-modrna-client-initiated-backchannel-authentication-1_0.html">OpenID Connect MODRNA Client initiated Backchannel Authentication Flow 1.0</a></li>
+<li><a href="http://openid.net/wordpress-content/uploads/2014/04/draft-mobile-discovery-01.html">MODRNA Discovery</a></li>
+<li><a href="http://openid.net/wordpress-content/uploads/2014/04/draft-mobile-registration-01.html">MODRNA Registration</a></li>
+</ul>
+<p><a href="http://openid.net/wg/eap/">EAP</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-connect-token-bound-authentication-1_0.html">Token Bound Authentication</a> – Defines how to apply Token Binding to OpenID Connect ID Tokens</li>
+<li><a href="http://openid.net/specs/openid-connect-eap-acr-values-1_0.html">EAP ACR Values</a> – Enables OpenID Connect RPs to request that specific authentication context classes be applied to authentications performed and for OPs to inform RPs whether these requests were satisfied</li>
+</ul>
+
+<p><a href="http://openid.net/wg/igov/">iGov</a> working group specifications:</p>
+<ul>
+<li><a href="https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?Submit=Submit&amp;format=ascii&amp;mode=html&amp;type=ascii&amp;url=https://bitbucket.org/openid/igov/raw/master/openid-igov-profile.xml">International Government Assurance Profile (iGov) for OpenID Connect 1.0</a></li>
+<li><a href="https://xml2rfc.tools.ietf.org/cgi-bin/xml2rfc.cgi?Submit=Submit&amp;format=ascii&amp;mode=html&amp;type=ascii&amp;url=https://bitbucket.org/openid/igov/raw/master/igov-profile-use-cases.xml">International Government Assurance Profile (iGov) Use Cases</a></li>
+</ul>
+<h2>Inactive Drafts</h2>
+<p><a href="http://openid.net/wg/napps/">Native Applications</a> working group specifications:</p>
+<ul>
+<li><a href="http://openid.bitbucket.org/draft-native-application-agent-core-01.html">Native Applications Agent Core 1.0</a></li>
+<li><a href="http://openid.bitbucket.org/draft-native-application-agent-api-bindings-01.html">Native Applications Agent API Bindings 1.0</a></li>
+</ul>
+<hr>
+<h2>Obsolete Specifications</h2>
+<p>Final OpenID 2.0 specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-authentication-2_0.html">OpenID Authentication 2.0</a> (<a href="http://openid.net/specs/openid-authentication-2_0.txt">txt</a>)</li>
+<li><a href="http://openid.net/specs/openid-attribute-exchange-1_0.html">OpenID Attribute Exchange 1.0</a> (<a href="http://openid.net/specs/openid-attribute-exchange-1_0.txt">txt</a>)</li>
+<li><a href="http://openid.net/specs/openid-provider-authentication-policy-extension-1_0.html">OpenID Provider Authentication Policy Extension 1.0</a> (<a href="http://openid.net/specs/openid-provider-authentication-policy-extension-1_0.txt">txt</a>)</li>
+<li><a href="http://openid.net/specs/openid-simple-registration-extension-1_0.html">OpenID Simple Registration Extension 1.0</a> (<a href="http://openid.net/specs/openid-simple-registration-extension-1_0.txt">txt</a>)</li>
+<li><a href="http://openid.net/specs/yadis-v1.0.pdf">Yadis Discovery Protocol</a> (<span style="font-size: x-small;">Developed separately from OpenID, though used in 2.0</span>)</li>
+</ul>
+<p>OpenID 2.0 Drafts:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-simple-registration-extension-1_1-01.html">OpenID Simple Registration Extension 1.1 – Draft 1</a> (<a href="http://openid.net/specs/openid-simple-registration-extension-1_1-01.txt">txt</a>)</li>
+<li>Contract Exchange 1.0</li>
+</ul>
+<p>Early OpenID specifications:</p>
+<ul>
+<li><a href="http://openid.net/specs/openid-authentication-1_1.html">OpenID Authentication 1.1</a> (<a href="http://openid.net/specs/openid-authentication-1_1.txt">txt</a>)</li>
+<li><a href="http://openid.net/specs/specs-1.1.bml">OpenID Authentication 1.1 (original format)</a></li>
+<li><a href="http://openid.net/specs/specs-1.0.bml">OpenID Authentication 1.0 (original format)</a></li>
+</ul>
+                </div>
+
+                                                    </article>
+                                
+                            
+                        
+                    
+                </div><!--.article-container -->
+
+           
+        <div class="span3 right tc-sidebar">
+           <div id="right" class="widget-area" role="complementary">
+              <aside id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://openid.net/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="Search">
+				</div>
+			</form></aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">News Archives</h3>		<label class="screen-reader-text" for="archives-dropdown-2">News Archives</label>
+		<select id="archives-dropdown-2" name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+			
+			<option value="">Select Month</option>
+				<option value="http://openid.net/2017/06/"> June 2017 &nbsp;(3)</option>
+	<option value="http://openid.net/2017/05/"> May 2017 &nbsp;(3)</option>
+	<option value="http://openid.net/2017/04/"> April 2017 &nbsp;(3)</option>
+	<option value="http://openid.net/2017/03/"> March 2017 &nbsp;(3)</option>
+	<option value="http://openid.net/2017/02/"> February 2017 &nbsp;(6)</option>
+	<option value="http://openid.net/2017/01/"> January 2017 &nbsp;(3)</option>
+	<option value="http://openid.net/2016/12/"> December 2016 &nbsp;(1)</option>
+	<option value="http://openid.net/2016/11/"> November 2016 &nbsp;(1)</option>
+	<option value="http://openid.net/2016/09/"> September 2016 &nbsp;(2)</option>
+	<option value="http://openid.net/2016/08/"> August 2016 &nbsp;(2)</option>
+	<option value="http://openid.net/2016/07/"> July 2016 &nbsp;(1)</option>
+	<option value="http://openid.net/2016/05/"> May 2016 &nbsp;(1)</option>
+	<option value="http://openid.net/2016/02/"> February 2016 &nbsp;(4)</option>
+	<option value="http://openid.net/2016/01/"> January 2016 &nbsp;(2)</option>
+	<option value="http://openid.net/2015/12/"> December 2015 &nbsp;(1)</option>
+	<option value="http://openid.net/2015/11/"> November 2015 &nbsp;(2)</option>
+	<option value="http://openid.net/2015/10/"> October 2015 &nbsp;(1)</option>
+	<option value="http://openid.net/2015/09/"> September 2015 &nbsp;(2)</option>
+	<option value="http://openid.net/2015/08/"> August 2015 &nbsp;(1)</option>
+	<option value="http://openid.net/2015/07/"> July 2015 &nbsp;(2)</option>
+	<option value="http://openid.net/2015/05/"> May 2015 &nbsp;(3)</option>
+	<option value="http://openid.net/2015/04/"> April 2015 &nbsp;(4)</option>
+	<option value="http://openid.net/2015/02/"> February 2015 &nbsp;(4)</option>
+	<option value="http://openid.net/2015/01/"> January 2015 &nbsp;(3)</option>
+	<option value="http://openid.net/2014/11/"> November 2014 &nbsp;(2)</option>
+	<option value="http://openid.net/2014/10/"> October 2014 &nbsp;(5)</option>
+	<option value="http://openid.net/2014/09/"> September 2014 &nbsp;(3)</option>
+	<option value="http://openid.net/2014/08/"> August 2014 &nbsp;(1)</option>
+	<option value="http://openid.net/2014/05/"> May 2014 &nbsp;(2)</option>
+	<option value="http://openid.net/2014/04/"> April 2014 &nbsp;(1)</option>
+	<option value="http://openid.net/2014/03/"> March 2014 &nbsp;(2)</option>
+	<option value="http://openid.net/2014/02/"> February 2014 &nbsp;(9)</option>
+	<option value="http://openid.net/2013/12/"> December 2013 &nbsp;(1)</option>
+	<option value="http://openid.net/2013/11/"> November 2013 &nbsp;(2)</option>
+	<option value="http://openid.net/2013/09/"> September 2013 &nbsp;(1)</option>
+	<option value="http://openid.net/2013/08/"> August 2013 &nbsp;(1)</option>
+	<option value="http://openid.net/2013/07/"> July 2013 &nbsp;(5)</option>
+	<option value="http://openid.net/2013/06/"> June 2013 &nbsp;(3)</option>
+	<option value="http://openid.net/2013/02/"> February 2013 &nbsp;(1)</option>
+	<option value="http://openid.net/2013/01/"> January 2013 &nbsp;(2)</option>
+	<option value="http://openid.net/2012/12/"> December 2012 &nbsp;(2)</option>
+	<option value="http://openid.net/2012/10/"> October 2012 &nbsp;(2)</option>
+	<option value="http://openid.net/2012/08/"> August 2012 &nbsp;(1)</option>
+	<option value="http://openid.net/2012/07/"> July 2012 &nbsp;(2)</option>
+	<option value="http://openid.net/2012/05/"> May 2012 &nbsp;(1)</option>
+	<option value="http://openid.net/2012/04/"> April 2012 &nbsp;(2)</option>
+	<option value="http://openid.net/2012/03/"> March 2012 &nbsp;(4)</option>
+	<option value="http://openid.net/2012/02/"> February 2012 &nbsp;(4)</option>
+	<option value="http://openid.net/2012/01/"> January 2012 &nbsp;(2)</option>
+	<option value="http://openid.net/2011/12/"> December 2011 &nbsp;(2)</option>
+	<option value="http://openid.net/2011/10/"> October 2011 &nbsp;(4)</option>
+	<option value="http://openid.net/2011/09/"> September 2011 &nbsp;(1)</option>
+	<option value="http://openid.net/2011/08/"> August 2011 &nbsp;(2)</option>
+	<option value="http://openid.net/2011/07/"> July 2011 &nbsp;(1)</option>
+	<option value="http://openid.net/2011/05/"> May 2011 &nbsp;(3)</option>
+	<option value="http://openid.net/2011/04/"> April 2011 &nbsp;(3)</option>
+	<option value="http://openid.net/2011/03/"> March 2011 &nbsp;(2)</option>
+	<option value="http://openid.net/2011/02/"> February 2011 &nbsp;(1)</option>
+	<option value="http://openid.net/2011/01/"> January 2011 &nbsp;(2)</option>
+	<option value="http://openid.net/2010/12/"> December 2010 &nbsp;(2)</option>
+	<option value="http://openid.net/2010/11/"> November 2010 &nbsp;(4)</option>
+	<option value="http://openid.net/2010/10/"> October 2010 &nbsp;(3)</option>
+	<option value="http://openid.net/2010/09/"> September 2010 &nbsp;(3)</option>
+	<option value="http://openid.net/2010/03/"> March 2010 &nbsp;(7)</option>
+	<option value="http://openid.net/2010/01/"> January 2010 &nbsp;(3)</option>
+	<option value="http://openid.net/2009/12/"> December 2009 &nbsp;(5)</option>
+	<option value="http://openid.net/2009/11/"> November 2009 &nbsp;(3)</option>
+	<option value="http://openid.net/2009/10/"> October 2009 &nbsp;(2)</option>
+	<option value="http://openid.net/2009/09/"> September 2009 &nbsp;(3)</option>
+	<option value="http://openid.net/2009/08/"> August 2009 &nbsp;(3)</option>
+	<option value="http://openid.net/2009/07/"> July 2009 &nbsp;(1)</option>
+	<option value="http://openid.net/2009/05/"> May 2009 &nbsp;(1)</option>
+	<option value="http://openid.net/2009/04/"> April 2009 &nbsp;(2)</option>
+	<option value="http://openid.net/2009/02/"> February 2009 &nbsp;(2)</option>
+	<option value="http://openid.net/2009/01/"> January 2009 &nbsp;(2)</option>
+	<option value="http://openid.net/2008/12/"> December 2008 &nbsp;(5)</option>
+	<option value="http://openid.net/2008/11/"> November 2008 &nbsp;(3)</option>
+	<option value="http://openid.net/2008/10/"> October 2008 &nbsp;(4)</option>
+	<option value="http://openid.net/2008/09/"> September 2008 &nbsp;(2)</option>
+	<option value="http://openid.net/2008/08/"> August 2008 &nbsp;(2)</option>
+	<option value="http://openid.net/2008/07/"> July 2008 &nbsp;(1)</option>
+	<option value="http://openid.net/2008/05/"> May 2008 &nbsp;(4)</option>
+	<option value="http://openid.net/2008/04/"> April 2008 &nbsp;(3)</option>
+	<option value="http://openid.net/2008/02/"> February 2008 &nbsp;(2)</option>
+	<option value="http://openid.net/2008/01/"> January 2008 &nbsp;(2)</option>
+	<option value="http://openid.net/2007/12/"> December 2007 &nbsp;(3)</option>
+	<option value="http://openid.net/2007/10/"> October 2007 &nbsp;(2)</option>
+
+		</select>
+		</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3><label class="screen-reader-text" for="cat">Categories</label><select name="cat" id="cat" class="postform">
+	<option value="-1">Select Category</option>
+	<option class="level-0" value="52">Case Studies&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="511">Certification&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="380">Chapters&nbsp;&nbsp;(2)</option>
+	<option class="level-1" value="386">&nbsp;&nbsp;&nbsp;Japan&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="476">Code&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="47">Foundation&nbsp;&nbsp;(54)</option>
+	<option class="level-1" value="501">&nbsp;&nbsp;&nbsp;Election&nbsp;&nbsp;(15)</option>
+	<option class="level-1" value="235">&nbsp;&nbsp;&nbsp;Summit Events&nbsp;&nbsp;(9)</option>
+	<option class="level-1" value="362">&nbsp;&nbsp;&nbsp;Technology Events&nbsp;&nbsp;(4)</option>
+	<option class="level-0" value="63">government&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="57">Marketing&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="3">News&nbsp;&nbsp;(146)</option>
+	<option class="level-1" value="69">&nbsp;&nbsp;&nbsp;Press Releases&nbsp;&nbsp;(11)</option>
+	<option class="level-0" value="211">Security&nbsp;&nbsp;(7)</option>
+	<option class="level-0" value="398">Seminars&nbsp;&nbsp;(3)</option>
+	<option class="level-1" value="314">&nbsp;&nbsp;&nbsp;Enterprise&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="157">Specs&nbsp;&nbsp;(57)</option>
+	<option class="level-0" value="1">Uncategorized&nbsp;&nbsp;(31)</option>
+	<option class="level-0" value="541">Working Group&nbsp;&nbsp;(7)</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			location.href = "http://openid.net/?cat=" + dropdown.options[ dropdown.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+</aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://openid.net/2017/06/05/notice-of-vote-for-implementers-draft-of-openyolo-for-android-specification/">Notice of Vote for Implementer’s Draft of OpenYOLO for Android Specification</a>
+						</li>
+					<li>
+				<a href="http://openid.net/2017/06/02/public-review-period-for-five-heart-specifications-started/">Public Review Period for Five HEART Specifications Started</a>
+						</li>
+					<li>
+				<a href="http://openid.net/2017/06/01/public-review-period-for-financial-api-part-2-read-and-write-api-security-profile-started/">Public Review Period for “Financial API – Part 2: Read and Write API Security Profile” Started</a>
+						</li>
+					<li>
+				<a href="http://openid.net/2017/05/30/connecting-standards-reso-and-openid-connect/">Connecting Standards: RESO and OpenID Connect</a>
+						</li>
+					<li>
+				<a href="http://openid.net/2017/05/03/public-review-period-for-openyolo-for-android-specification-started/">Public Review Period for OpenYOLO for Android Specification Started</a>
+						</li>
+				</ul>
+		</aside>		<aside id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="http://openid.net/tag/account-chooser/" class="tag-link-416 tag-link-position-1" title="3 topics" style="font-size: 9.36585365854pt;">Account Chooser</a>
+<a href="http://openid.net/tag/adoption/" class="tag-link-17 tag-link-position-2" title="12 topics" style="font-size: 15.1707317073pt;">adoption</a>
+<a href="http://openid.net/tag/board-election/" class="tag-link-272 tag-link-position-3" title="7 topics" style="font-size: 12.7804878049pt;">board election</a>
+<a href="http://openid.net/tag/board-elections/" class="tag-link-145 tag-link-position-4" title="7 topics" style="font-size: 12.7804878049pt;">board elections</a>
+<a href="http://openid.net/tag/certification/" class="tag-link-516 tag-link-position-5" title="6 topics" style="font-size: 12.2113821138pt;">Certification</a>
+<a href="http://openid.net/tag/code/" class="tag-link-27 tag-link-position-6" title="2 topics" style="font-size: 8pt;">code</a>
+<a href="http://openid.net/tag/community/" class="tag-link-46 tag-link-position-7" title="2 topics" style="font-size: 8pt;">community</a>
+<a href="http://openid.net/tag/connect/" class="tag-link-163 tag-link-position-8" title="4 topics" style="font-size: 10.5040650407pt;">connect</a>
+<a href="http://openid.net/tag/developers/" class="tag-link-247 tag-link-position-9" title="5 topics" style="font-size: 11.4146341463pt;">developers</a>
+<a href="http://openid.net/tag/don-thibeau/" class="tag-link-51 tag-link-position-10" title="5 topics" style="font-size: 11.4146341463pt;">Don Thibeau</a>
+<a href="http://openid.net/tag/drummond-reed/" class="tag-link-73 tag-link-position-11" title="2 topics" style="font-size: 8pt;">drummond reed</a>
+<a href="http://openid.net/tag/election/" class="tag-link-42 tag-link-position-12" title="7 topics" style="font-size: 12.7804878049pt;">election</a>
+<a href="http://openid.net/tag/errata/" class="tag-link-500 tag-link-position-13" title="3 topics" style="font-size: 9.36585365854pt;">Errata</a>
+<a href="http://openid.net/tag/events/" class="tag-link-10 tag-link-position-14" title="10 topics" style="font-size: 14.3739837398pt;">events</a>
+<a href="http://openid.net/tag/fapi/" class="tag-link-581 tag-link-position-15" title="2 topics" style="font-size: 8pt;">FAPI</a>
+<a href="http://openid.net/tag/final-specification/" class="tag-link-446 tag-link-position-16" title="9 topics" style="font-size: 13.918699187pt;">Final Specification</a>
+<a href="http://openid.net/tag/foundation/" class="tag-link-561 tag-link-position-17" title="10 topics" style="font-size: 14.3739837398pt;">Foundation</a>
+<a href="http://openid.net/tag/google/" class="tag-link-9 tag-link-position-18" title="4 topics" style="font-size: 10.5040650407pt;">google</a>
+<a href="http://openid.net/tag/government/" class="tag-link-566 tag-link-position-19" title="5 topics" style="font-size: 11.4146341463pt;">government</a>
+<a href="http://openid.net/tag/heart/" class="tag-link-551 tag-link-position-20" title="3 topics" style="font-size: 9.36585365854pt;">HEART</a>
+<a href="http://openid.net/tag/implementers-draft/" class="tag-link-260 tag-link-position-21" title="26 topics" style="font-size: 18.8130081301pt;">Implementer's Draft</a>
+<a href="http://openid.net/tag/information-card-foundation/" class="tag-link-71 tag-link-position-22" title="2 topics" style="font-size: 8pt;">information card foundation</a>
+<a href="http://openid.net/tag/interop/" class="tag-link-253 tag-link-position-23" title="2 topics" style="font-size: 8pt;">interop</a>
+<a href="http://openid.net/tag/japan/" class="tag-link-109 tag-link-position-24" title="2 topics" style="font-size: 8pt;">japan</a>
+<a href="http://openid.net/tag/microsoft/" class="tag-link-8 tag-link-position-25" title="2 topics" style="font-size: 8pt;">microsoft</a>
+<a href="http://openid.net/tag/modrna/" class="tag-link-601 tag-link-position-26" title="3 topics" style="font-size: 9.36585365854pt;">MODRNA</a>
+<a href="http://openid.net/tag/myspace/" class="tag-link-21 tag-link-position-27" title="2 topics" style="font-size: 8pt;">myspace</a>
+<a href="http://openid.net/tag/oidf/" class="tag-link-20 tag-link-position-28" title="3 topics" style="font-size: 9.36585365854pt;">oidf</a>
+<a href="http://openid.net/tag/openid/" class="tag-link-11 tag-link-position-29" title="21 topics" style="font-size: 17.7886178862pt;">openid</a>
+<a href="http://openid.net/tag/openid-connect/" class="tag-link-254 tag-link-position-30" title="50 topics" style="font-size: 22pt;">OpenID Connect</a>
+<a href="http://openid.net/tag/openiddevcamp/" class="tag-link-12 tag-link-position-31" title="2 topics" style="font-size: 8pt;">openiddevcamp</a>
+<a href="http://openid.net/tag/openyolo/" class="tag-link-626 tag-link-position-32" title="2 topics" style="font-size: 8pt;">OpenYOLO</a>
+<a href="http://openid.net/tag/pape/" class="tag-link-43 tag-link-position-33" title="2 topics" style="font-size: 8pt;">pape</a>
+<a href="http://openid.net/tag/public-review/" class="tag-link-576 tag-link-position-34" title="4 topics" style="font-size: 10.5040650407pt;">Public Review</a>
+<a href="http://openid.net/tag/relying-party/" class="tag-link-18 tag-link-position-35" title="2 topics" style="font-size: 8pt;">relying party</a>
+<a href="http://openid.net/tag/research/" class="tag-link-34 tag-link-position-36" title="2 topics" style="font-size: 8pt;">research</a>
+<a href="http://openid.net/tag/retail-advisory-committee/" class="tag-link-53 tag-link-position-37" title="3 topics" style="font-size: 9.36585365854pt;">retail advisory committee</a>
+<a href="http://openid.net/tag/security/" class="tag-link-22 tag-link-position-38" title="4 topics" style="font-size: 10.5040650407pt;">security</a>
+<a href="http://openid.net/tag/sourceforge/" class="tag-link-16 tag-link-position-39" title="2 topics" style="font-size: 8pt;">sourceforge</a>
+<a href="http://openid.net/tag/spec/" class="tag-link-223 tag-link-position-40" title="6 topics" style="font-size: 12.2113821138pt;">spec</a>
+<a href="http://openid.net/tag/specification/" class="tag-link-44 tag-link-position-41" title="44 topics" style="font-size: 21.3170731707pt;">specification</a>
+<a href="http://openid.net/tag/summit/" class="tag-link-241 tag-link-position-42" title="9 topics" style="font-size: 13.918699187pt;">summit</a>
+<a href="http://openid.net/tag/usability/" class="tag-link-23 tag-link-position-43" title="7 topics" style="font-size: 12.7804878049pt;">usability</a>
+<a href="http://openid.net/tag/user-experience/" class="tag-link-33 tag-link-position-44" title="7 topics" style="font-size: 12.7804878049pt;">user experience</a>
+<a href="http://openid.net/tag/vote/" class="tag-link-266 tag-link-position-45" title="12 topics" style="font-size: 15.1707317073pt;">vote</a></div>
+</aside><!-- kb advanced rss had an error - unable to load options. sorry. -->            </div><!-- #left or #right-->
+        </div><!--.tc-sidebar -->
+
+        
+        </div><!--.row -->
+    </div><!-- .container role: main -->
+
+    
+</div><!--#main-wrapper"-->
+
+		<!-- FOOTER -->
+		<footer id="footer" class="">
+		 		    				 <div class="colophon">
+			 	<div class="container">
+			 		<div class="row-fluid">
+					    <div class="span4 social-block pull-left"><span class="tc-footer-social-links-wrapper"><a class="social-icon icon-feed" href="http://openid.net/feed/rss/" title="Subscribe to my rss feed"></a><a class="social-icon icon-twitter" href="https://twitter.com/openid/" title="Follow me on Twitter" target="_blank"></a><a class="social-icon icon-facebook" href="https://www.facebook.com/openid.net" title="Follow me on Facebook" target="_blank"></a><a class="social-icon icon-google" href="https://google.com/+openid" title="Follow me on Google+" target="_blank"></a><a class="social-icon icon-youtube" href="http://www.youtube.com/user/TheOpenIDFoundation" title="Follow me on Youtube" target="_blank"></a></span></div><div class="span4 credits"><p>· © 2017 <a href="http://openid.net/" title="OpenID" rel="bookmark">OpenID</a> · Designed by <a href="http://presscustomizr.com/">Press Customizr</a> ·</p></div><div class="span4 backtop"><p class="pull-right"><a class="back-to-top" href="http://openid.net/developers/specs/#">Back to top</a></p></div>	      			</div><!-- .row-fluid -->
+	      		</div><!-- .container -->
+	      	</div><!-- .colophon -->
+	    			</footer>
+		<script type="text/javascript" src="./Specifications _ OpenID_files/core.min.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/modernizr.min.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/effect.min.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/retina.min.js"></script>
+<script type="text/javascript" src="./Specifications _ OpenID_files/wp-embed.min.js"></script>
+<div class="tc-btt-wrapper"><i class="btt-arrow" style="color:#F78C40"></i></div>	
+	<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div id="window-resizer-tooltip"><a href="http://openid.net/developers/specs/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth"></span> x <span class="tooltipHeight" id="winHeight"></span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth"></span> x <span class="tooltipHeight" id="vpHeight"></span></div></body></html>
